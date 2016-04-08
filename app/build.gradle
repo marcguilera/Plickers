@@ -23,4 +23,11 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.+'
+
+    //REST
+    compile 'com.loopj.android:android-async-http:1.4.9'
+
+    //JSON
+    compile 'com.codesnippets4all:quick-json:1.0.4'
+
 }

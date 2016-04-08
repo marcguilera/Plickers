@@ -1,5 +1,7 @@
 package com.plickers.android.network;
 
+import com.eclipsesource.json.JsonValue;
+
 /**
  * This allows perform actions after getting
  * result of an api call. It usually would be
@@ -14,7 +16,7 @@ public class ApiCallback {
      * Called when the api call has been successful.ç
      * @param response
      */
-    public void onSuccess(Object response){}
+    public void onSuccess(JsonValue response){}
 
     /**
      * Called when the call failed for any reson.

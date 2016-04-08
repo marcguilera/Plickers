@@ -2,10 +2,12 @@ package com.plickers.android.network;
 
 import android.util.Log;
 
+import com.eclipsesource.json.Json;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.TextHttpResponseHandler;
 import com.plickers.android.Constants;
 
 import org.json.JSONArray;
@@ -36,41 +38,28 @@ public class Api {
     }
 
     public static void get(String url, RequestParams params, final ApiCallback callback) {
-        client.get(getAbsoluteUrl(url), params, getJsonHttpResponseHandler(callback));
+        client.get(getAbsoluteUrl(url), params, getTextHttpResponseHandler(callback));
     }
 
     public static void post(String url, RequestParams params, ApiCallback callback) {
-        client.post(getAbsoluteUrl(url), params, getJsonHttpResponseHandler(callback));
+        client.post(getAbsoluteUrl(url), params, getTextHttpResponseHandler(callback));
     }
 
     private static String getAbsoluteUrl(String relativeUrl) {
         return BASE_URL + relativeUrl;
     }
 
-    private static JsonHttpResponseHandler getJsonHttpResponseHandler(final ApiCallback callback){
-        return new JsonHttpResponseHandler(){
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray objects) {
-                super.onSuccess(statusCode,headers,objects);
-                callback.onSuccess(objects);
-            }
+    private static TextHttpResponseHandler getTextHttpResponseHandler(final ApiCallback callback){
+        return new TextHttpResponseHandler(){
 
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject object) {
-                super.onSuccess(statusCode,headers,object);
-                callback.onSuccess(object);
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                super.onFailure(statusCode,headers, throwable, errorResponse);
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 callback.onError(statusCode);
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                super.onFailure(statusCode,headers, throwable, errorResponse);
-                callback.onError(statusCode);
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                callback.onSuccess(Json.parse(responseString));
             }
         };
     }

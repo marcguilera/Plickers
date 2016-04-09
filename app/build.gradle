@@ -22,6 +22,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+
     compile 'com.android.support:appcompat-v7:24.+'
 
     //REST
@@ -29,5 +30,8 @@ dependencies {
 
     //JSON
     compile 'com.eclipsesource.minimal-json:minimal-json:0.9.4'
+
+    //IMAGE DOWNLOADING
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
 }

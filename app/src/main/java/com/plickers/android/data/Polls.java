@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Polls implements Serializable {
 
-    List<Poll> polls = new ArrayList<>();
+    List<Poll> polls = new ArrayList<>(0);
 
     @Override
     public void fromJson(JsonValue value) {

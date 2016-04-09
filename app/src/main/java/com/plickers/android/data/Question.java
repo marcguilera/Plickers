@@ -1,8 +1,16 @@
 package com.plickers.android.data;
 
+import android.graphics.Bitmap;
+import android.view.View;
+
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.ImageSize;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+import com.plickers.android.network.ImageLoaderCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +22,8 @@ public class Question extends DBObject{
 
     private String body;
     private String image;
-    private List<Choice> choices;
+    private List<Choice> choices = new ArrayList<>(0);
+    private Bitmap imageBitmap;
 
     @Override
     public void fromJson(JsonValue value) {
@@ -40,6 +49,7 @@ public class Question extends DBObject{
 
     }
 
+
     @Override
     public void toJson(JsonValue value) {
 
@@ -55,5 +65,21 @@ public class Question extends DBObject{
 
     public List<Choice> getChoices() {
         return choices;
+    }
+
+    public void fetchBitmap(final ImageLoaderCallback callback){
+        if(imageBitmap!=null) {
+            callback.onComplete(imageBitmap);
+            return;
+        }
+
+        ImageLoader loader = ImageLoader.getInstance();
+        loader.loadImage(image, new SimpleImageLoadingListener() {
+            @Override
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                imageBitmap=loadedImage;
+                callback.onComplete(imageBitmap);
+            }
+        });
     }
 }

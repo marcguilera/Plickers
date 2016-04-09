@@ -16,7 +16,7 @@ public class Poll extends DBObject{
     private String id;
     private String section;
     private Question question;
-    private List<Response> responses;
+    private List<Response> responses = new ArrayList<>(0);
 
     @Override
     public void fromJson(JsonValue value) {

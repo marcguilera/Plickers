@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Plickers</string>
+    <string name="loading">Loading polls...</string>
+
+    <string name="added_on">Added on</string>
+
+    <plurals name="answered_x_times">
+        <item quantity="zero">Never answered</item>
+        <item quantity="one">One answer</item>
+        <item quantity="other">%d  answers</item>
+    </plurals>
 </resources>

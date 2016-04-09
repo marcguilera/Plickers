@@ -13,6 +13,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 import com.plickers.android.network.ImageLoaderCallback;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,7 +24,6 @@ public class Question extends DBObject{
     private String body;
     private String image;
     private List<Choice> choices = new ArrayList<>(0);
-    private Bitmap imageBitmap;
 
     @Override
     public void fromJson(JsonValue value) {
@@ -67,19 +67,19 @@ public class Question extends DBObject{
         return choices;
     }
 
-    public void fetchBitmap(final ImageLoaderCallback callback){
-        if(imageBitmap!=null) {
-            callback.onComplete(imageBitmap);
-            return;
-        }
+    public void setBody(String body) {
+        this.body = body;
+    }
 
-        ImageLoader loader = ImageLoader.getInstance();
-        loader.loadImage(image, new SimpleImageLoadingListener() {
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                imageBitmap=loadedImage;
-                callback.onComplete(imageBitmap);
-            }
-        });
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setChoices(List<Choice> choices) {
+        this.choices = choices;
+    }
+
+    public void setChoices(Choice ... choices) {
+        this.choices = new ArrayList<>(Arrays.asList(choices));
     }
 }

@@ -5,6 +5,12 @@
 
     <string name="added_on">Added on</string>
     <string name="no_results">No results. Try removing your filter.</string>
+    <string name="loading_image">Loading image...</string>
+    <string name="poll_choices_title">Choices</string>
+
+    <plurals name="poll_responses_title">
+        <item quantity="other">Responses (%d)</item>
+    </plurals>
 
     <plurals name="answered_x_times">
         <item quantity="zero">Never answered</item>

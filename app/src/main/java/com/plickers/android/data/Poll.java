@@ -8,6 +8,7 @@ import com.eclipsesource.json.JsonValue;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -68,5 +69,26 @@ public class Poll extends DBObject{
 
     public List<Response> getResponses() {
         return responses;
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public void setResponses(List<Response> responses) {
+        this.responses = responses;
+    }
+
+    public void setResponses(Response ... responses) {
+        this.responses = new ArrayList<>(Arrays.asList(responses));
     }
 }

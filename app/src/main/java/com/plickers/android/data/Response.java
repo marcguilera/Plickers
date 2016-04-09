@@ -30,4 +30,28 @@ public class Response extends DBObject{
     public void toJson(JsonValue value) {
 
     }
+
+    public void setStudent(String student) {
+        this.student = student;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public void setCard(int card) {
+        this.card = card;
+    }
+
+    public String getStudent() {
+        return student;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public int getCard() {
+        return card;
+    }
 }

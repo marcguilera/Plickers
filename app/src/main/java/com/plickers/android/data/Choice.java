@@ -37,4 +37,12 @@ public class Choice extends DBObject{
     public boolean isCorrect() {
         return correct;
     }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public void setCorrect(boolean correct) {
+        this.correct = correct;
+    }
 }

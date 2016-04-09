@@ -78,20 +78,6 @@ public class PollAdapter extends FilterableAdapter<Poll> {
             ((ViewManager)row).removeView(addedTV);
         }
 
-
-        question.fetchBitmap(new ImageLoaderCallback() {
-            @Override
-            public void onComplete(Bitmap bm) {
-                ImageView imageView = (ImageView) row.findViewById(R.id.polls_thumb);
-                if(bm!=null){
-                    imageView.setImageBitmap(bm);
-                }else{
-                    ((ViewManager)row).removeView(imageView);
-                }
-            }
-        });
-
-
         return row;
     }
 

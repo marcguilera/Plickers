@@ -6,7 +6,7 @@ import com.eclipsesource.json.JsonValue;
  * General interface implemented by all objects that
  * need conversion form and to JSON for convenience.
  */
-public interface Serializable {
+public interface Serializable extends java.io.Serializable{
     /**
      * Fills the serializable object with the information in the
      * JsonValue.

@@ -1,10 +1,13 @@
 package com.plickers.android.data;
 
+import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonArray;
+import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -33,10 +36,17 @@ public class Polls implements Serializable {
 
     @Override
     public void toJson(JsonValue value) {
-
     }
 
     public List<Poll> getPolls() {
         return polls;
+    }
+
+    public void setPolls(List<Poll> polls) {
+        this.polls = polls;
+    }
+
+    public void setPolls(Poll ... polls) {
+        this.polls = new ArrayList<>(Arrays.asList(polls));
     }
 }

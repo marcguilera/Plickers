@@ -1,5 +1,7 @@
 package com.plickers.android.data;
 
+import android.os.Parcelable;
+
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
 
@@ -15,6 +17,8 @@ public abstract class DBObject implements Serializable{
     Date modified;
     Date created;
     String id;
+
+    private static final long serialVersionUID = 1L;
 
     @Override
     public void fromJson(JsonValue value) {
@@ -61,6 +65,18 @@ public abstract class DBObject implements Serializable{
 
     public String getId() {
         return id;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
 

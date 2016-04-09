@@ -1,19 +1,14 @@
 package com.plickers.android.activities;
 
-import android.app.Activity;
-import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.eclipsesource.json.JsonValue;
@@ -78,6 +73,18 @@ public class MainActivity extends AppCompatActivity {
         ListView lv = (ListView) findViewById(R.id.polls_list);
         lv.setAdapter(adapter);
 
+        //Add click listener
+        AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Poll poll = (Poll) parent.getItemAtPosition(position);
+                Intent intent = new Intent(view.getContext(), PollActivity.class);
+                intent.putExtra("poll",poll);
+                startActivity(intent);
+            }
+        };
+
+        lv.setOnItemClickListener(listener);
 
         addSearchListener(adapter);
     }

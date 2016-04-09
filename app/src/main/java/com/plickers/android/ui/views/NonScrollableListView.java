@@ -1,4 +1,4 @@
-package com.plickers.android.views;
+package com.plickers.android.ui.views;
 
 import android.content.Context;
 import android.util.AttributeSet;

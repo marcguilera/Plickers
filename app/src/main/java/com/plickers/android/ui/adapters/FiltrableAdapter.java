@@ -1,24 +1,27 @@
-package com.plickers.android.activities;
+package com.plickers.android.ui.adapters;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 
-import com.plickers.android.data.Poll;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * General adapter with filterable capabilities for reusability
+ * General adapter with filterable capabilities for reusability.
+ * The only thing that childs have to do is implement performFilter.
  */
-public abstract class FilterableAdapter<T> extends ArrayAdapter<T> {
+public abstract class FiltrableAdapter<T> extends ArrayAdapter<T> {
     private List<T> originalData, filteredData;
     private FilterableFilter mFilter = new FilterableFilter();
 
-    public FilterableAdapter(Context context, int layout, List<T> resource) {
+    public FiltrableAdapter(Context context, int layout, List<T> resource) {
         super(context, layout, resource);
         this.originalData=this.filteredData=resource;
+    }
+
+    public FiltrableAdapter(Context context, int layout) {
+        this(context, layout, new ArrayList<T>());
     }
 
     @Override

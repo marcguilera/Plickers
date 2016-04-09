@@ -1,4 +1,4 @@
-package com.plickers.android.views;
+package com.plickers.android.ui.views;
 
 import android.widget.ImageView;
 
@@ -8,8 +8,11 @@ import android.widget.ImageView;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
+/**
+ * ImageView that makes the image respect the aspect ratio
+ * while having a 100% width.
+ */
 public class ProportionalImageView extends ImageView {
 
     public ProportionalImageView(Context context) {

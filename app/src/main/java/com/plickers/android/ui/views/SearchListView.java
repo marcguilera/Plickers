@@ -5,11 +5,13 @@ import android.support.v7.widget.ActionBarOverlayLayout;
 import android.support.v7.widget.SearchView;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.plickers.android.ui.adapters.FiltrableAdapter;
@@ -24,6 +26,9 @@ public class SearchListView extends LinearLayout{
 
     private SearchView searchView;
     private ListView listView;
+    private TextView noResults;
+    private String noResultsText = "";
+
 
     public SearchListView(Context context) {
         this(context,null);
@@ -92,6 +97,31 @@ public class SearchListView extends LinearLayout{
     private void performFilter(String query){
         FiltrableAdapter adapter = (FiltrableAdapter) listView.getAdapter();
         adapter.getFilter().filter(query);
+
+        if(adapter.isEmpty()){
+            addNoResultsText();
+        }else{
+            removeNoResultsText();
+        }
+    }
+
+    private void removeNoResultsText() {
+        if(noResults!=null){
+            ((ViewGroup) noResults.getParent()).removeView(noResults);
+            noResults=null;
+        }
+    }
+
+    private void addNoResultsText() {
+        if(noResults==null){
+            noResults = new TextView(getContext());
+            LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+            noResults.setGravity(Gravity.CENTER);
+            noResults.setTextSize(25);
+            noResults.setLayoutParams(params);
+            noResults.setText(noResultsText);
+            addView(noResults);
+        }
     }
 
     /**
@@ -136,5 +166,9 @@ public class SearchListView extends LinearLayout{
 
     public interface SearchListViewItemClickListener{
         public void onItemClicked(Object item);
+    }
+
+    public void setNoResultsText(String noResultsText) {
+        this.noResultsText = noResultsText;
     }
 }

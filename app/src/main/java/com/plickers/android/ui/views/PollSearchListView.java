@@ -3,6 +3,7 @@ package com.plickers.android.ui.views;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import com.plickers.android.R;
 import com.plickers.android.data.Poll;
 import com.plickers.android.ui.adapters.PollListingAdapter;
 
@@ -32,5 +33,7 @@ public class PollSearchListView extends SearchListView{
 
     public void init(){
         setAdapter(new PollListingAdapter(getContext()));
+        String noresults = getContext().getString(R.string.no_results);
+        setNoResultsText(noresults);
     }
 }

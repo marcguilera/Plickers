@@ -14,6 +14,7 @@
         <uses-sdk
             android:minSdkVersion="15"
             android:targetSdkVersion="23" />
+
         <activity android:name=".activities.PollListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.QuestionActivity"></activity>
     </application>
 
 </manifest>

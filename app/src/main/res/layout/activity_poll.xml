@@ -35,7 +35,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark">
+                android:background="@color/colorPrimary">
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -47,53 +47,74 @@
                     android:textColor="@color/abc_background_cache_hint_selector_material_light" />
             </FrameLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/poll_choices_title"
-                android:layout_margin="10dp"
-                android:textColor="@color/colorPrimary" />
-
-            <View
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorPrimary"/>
+                android:layout_height="match_parent">
 
-            <com.plickers.android.views.NonScrollableListView
-                android:id="@+id/poll_choices_list"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/poll_choices_title"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/colorPrimary" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimary"/>
+
+                <com.plickers.android.views.NonScrollableListView
+                    android:id="@+id/poll_choices_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:choiceMode="none"
+                    android:clickable="false"
+                    android:listSelector="@android:color/transparent"
+                    >
+                </com.plickers.android.views.NonScrollableListView>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:choiceMode="none"
-                android:clickable="false"
-                android:listSelector="@android:color/transparent"
-                >
-            </com.plickers.android.views.NonScrollableListView>
+                android:layout_height="match_parent">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/poll_responses_title"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="Responses (x)" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/poll_responses_title"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:layout_margin="10dp"
-                android:textColor="@color/colorPrimary"
-                android:text="Responses (x)" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimary"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorPrimary"/>
+                <com.plickers.android.views.NonScrollableListView
+                    android:id="@+id/poll_responses_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:choiceMode="none"
+                    android:clickable="false"
+                    >
+                </com.plickers.android.views.NonScrollableListView>
 
-            <com.plickers.android.views.NonScrollableListView
-                android:id="@+id/poll_responses_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:choiceMode="none"
-                android:clickable="false"
-                android:listSelector="@android:color/transparent"
-                >
-            </com.plickers.android.views.NonScrollableListView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/hint_responses"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/colorPrimary"
+                    android:gravity="center"/>
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

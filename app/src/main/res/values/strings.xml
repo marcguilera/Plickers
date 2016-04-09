@@ -7,6 +7,7 @@
     <string name="no_results">No results. Try removing your filter.</string>
     <string name="loading_image">Loading image...</string>
     <string name="poll_choices_title">Choices</string>
+    <string name="hint_responses">Pro tip: Tap on a student to view more details.</string>
 
     <plurals name="poll_responses_title">
         <item quantity="other">Responses (%d)</item>
@@ -17,4 +18,6 @@
         <item quantity="one">One answer</item>
         <item quantity="other">%d  answers</item>
     </plurals>
+    <string name="err_dialog_title">Bummer!</string>
+    <string name="err_dialog_message">There was an error downloading the polls. Are sure you are connected to the internet?</string>
 </resources>

@@ -51,8 +51,8 @@ public class PollAdapter extends FilterableAdapter<Poll> {
         String questionString = question.getBody();
 
         if(questionString!=null&&!questionString.isEmpty()){
-            if(questionString.length()>28){
-                questionString = questionString.substring(0,26)+"...";
+            if(questionString.length()>34){
+                questionString = questionString.substring(0,31)+"...";
             }
             questionTV.setText(questionString);
         }else{

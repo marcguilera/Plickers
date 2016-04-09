@@ -17,7 +17,8 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Question"
             android:id="@+id/poll_question"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:layout_width="wrap_content"

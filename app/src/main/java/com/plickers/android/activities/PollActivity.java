@@ -55,18 +55,19 @@ public class PollActivity extends AppCompatActivity {
     }
 
     private void fillResponsesList() {
+
         List<Response> responses = poll.getResponses();
         TextView title = (TextView) findViewById(R.id.poll_responses_title);
         String responseString = getResources().getQuantityString(R.plurals.poll_responses_title, 0, responses.size());
         title.setText(responseString);
-        /*
-        ListView choicesList = (ListView) findViewById(R.id.poll_choices_list);
 
-        List<Choice> choices = poll.getQuestion().getChoices();
-        ChoicesAdapter adapter = new ChoicesAdapter(this,choices);
+        ListView responsesList = (ListView) findViewById(R.id.poll_responses_list);
 
-        choicesList.setAdapter(adapter);
-        */
+
+        ResponsesAdapter adapter = new ResponsesAdapter(this,responses);
+
+        responsesList.setAdapter(adapter);
+
     }
 
     private void fillChoicesList() {

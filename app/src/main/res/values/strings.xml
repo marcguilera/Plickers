@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Plickers</string>
-    <string name="loading">Loading polls...</string>
+    <string name="loading_polls_title">Loading polls</string>
+    <string name="loading_polls_body">I am fetching the polls. This can take a moment.</string>
 
     <string name="added_on">Added on</string>
+    <string name="no_results">No results. Try removing your filter.</string>
 
     <plurals name="answered_x_times">
         <item quantity="zero">Never answered</item>

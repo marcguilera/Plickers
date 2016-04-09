@@ -1,5 +1,7 @@
 package com.plickers.android.data;
 
+import android.util.Log;
+
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;

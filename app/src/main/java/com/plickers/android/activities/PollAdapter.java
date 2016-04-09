@@ -10,8 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -24,14 +29,12 @@ import com.plickers.android.network.ImageLoaderCallback;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import cz.msebera.android.httpclient.client.cache.Resource;
-
 /**
  * Created by marc on 9/04/16.
  */
-public class PollAdapter extends ArrayAdapter<Poll>{
+public class PollAdapter extends FilterableAdapter<Poll> {
 
-    public PollAdapter(Context context, Poll[] polls) {
+    public PollAdapter(Context context, List<Poll> polls) {
         super(context, R.layout.poll_row, polls);
     }
 
@@ -92,5 +95,8 @@ public class PollAdapter extends ArrayAdapter<Poll>{
         return row;
     }
 
-
+    @Override
+    public boolean performFilter(Poll current, String query) {
+        return current.getQuestion().getBody().toLowerCase().contains(query.toLowerCase());
+    }
 }

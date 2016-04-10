@@ -34,7 +34,4 @@ dependencies {
     //IMAGE DOWNLOADING
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
-    //SEARCH MATERIAL
-    compile 'com.miguelcatalan:materialsearchview:1.4.0'
-
 }

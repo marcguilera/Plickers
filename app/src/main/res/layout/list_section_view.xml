@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.plickers.android.ui.views.SectionView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:styleColor="@color/colorPrimary"
+        custom:titleSectionString="@string/poll_choices_title"
+        android:id="@+id/lsvHead" >
+    </com.plickers.android.ui.views.SectionView>
+
+    <com.plickers.android.ui.views.NonScrollableListView
+        android:id="@+id/lsvList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:choiceMode="none"
+        android:clickable="false">
+    </com.plickers.android.ui.views.NonScrollableListView>
+
+</LinearLayout>

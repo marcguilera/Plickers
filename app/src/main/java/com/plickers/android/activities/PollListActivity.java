@@ -1,15 +1,21 @@
 package com.plickers.android.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewManager;
 import android.view.Window;
+import android.widget.ProgressBar;
 
 import com.eclipsesource.json.JsonValue;
 import com.plickers.android.R;
 import com.plickers.android.data.Poll;
 import com.plickers.android.data.Polls;
+import com.plickers.android.data.Response;
 import com.plickers.android.network.Api;
 import com.plickers.android.network.ApiCallback;
 import com.plickers.android.ui.adapters.PollListingAdapter;
@@ -60,7 +66,42 @@ public class PollListActivity extends PlickersActivity {
                 SearchListView listView = (SearchListView) findViewById(R.id.lvSearch);
                 PollListingAdapter adapter = new PollListingAdapter(listView.getContext(),polls.getPolls());
                 listView.setAdapter(adapter);
+
+                //Remove the progress bar from the view
+                ProgressBar bar = (ProgressBar) findViewById(R.id.pbLoadingPolls);
+                ((ViewManager)bar.getParent()).removeView(bar);
+            }
+
+            public void onError(int errorCode){
+                super.onError(errorCode);
+                showErrorDialog(errorCode);
             }
         });
+    }
+
+    private void showErrorDialog(int code){
+        AlertDialog dialog;
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        final View view = findViewById(R.id.pbBody);
+        view.setVisibility(View.INVISIBLE);
+
+        String title = getString(R.string.err_dialog_title);
+        if(code!=0) title += " - "+code;
+
+
+        alertDialogBuilder.setTitle(title);
+        alertDialogBuilder.setMessage(getString(R.string.err_dialog_message));
+        alertDialogBuilder.setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                view.setVisibility(View.VISIBLE);
+                loadPolls();
+            }
+        });
+        dialog = alertDialogBuilder.create();
+        dialog.show();
     }
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <com.plickers.android.ui.views.ProportionalImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/qbTumb"
+        android:adjustViewBounds="true">
+
+    </com.plickers.android.ui.views.ProportionalImageView>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/qbProgressBar"
+        android:indeterminate="true" >
+    </ProgressBar>
+
+    <com.plickers.android.ui.views.TitleView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:backgroundColor="@color/colorPrimary"
+        custom:titleColor="@android:color/white"
+        android:id="@+id/qbTitle">
+
+    </com.plickers.android.ui.views.TitleView>
+
+    <com.plickers.android.ui.views.ListSectionView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/qbChoices"
+        custom:styleColor="@color/colorPrimary"
+        custom:titleSectionString="@string/poll_choices_title"
+        custom:clickableItems="false"
+        android:orientation="vertical">
+
+    </com.plickers.android.ui.views.ListSectionView>
+
+    <com.plickers.android.ui.views.ListSectionView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/qbResponses"
+        custom:styleColor="@color/colorPrimary"
+        custom:clickableItems="true"
+        android:orientation="vertical">
+
+    </com.plickers.android.ui.views.ListSectionView>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/more_info"
+        android:id="@+id/qbMoreInfo"
+        android:layout_gravity="center_horizontal"
+        style="@style/Base.Widget.AppCompat.Button.Borderless" />
+
+</LinearLayout>

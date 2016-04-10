@@ -20,4 +20,15 @@
     </plurals>
     <string name="err_dialog_title">Bummer!</string>
     <string name="err_dialog_message">There was an error downloading the polls. Are sure you are connected to the internet?</string>
+
+    <string name="answer">Answer</string>
+    <string name="card">Card</string>
+    <string name="more_info">More info</string>
+
+    <string name="question">Question</string>
+    <string name="created">Created on</string>
+    <string name="modified">Modified on</string>
+    <string name="choices"># choices</string>
+    <string name="responses"># responses</string>
+    <string name="retry">Retry</string>
 </resources>

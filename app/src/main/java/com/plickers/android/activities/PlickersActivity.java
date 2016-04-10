@@ -10,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 
+import com.nostra13.universalimageloader.cache.memory.MemoryCache;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.plickers.android.R;
 
 /**
@@ -24,10 +27,19 @@ public class PlickersActivity extends AppCompatActivity {
     }
 
     private void init() {
-        initActionBart();
+        initActionBar();
+        initImageDownloader();
     }
 
-    private void initActionBart() {
+    private void initImageDownloader() {
+        ImageLoader loader = ImageLoader.getInstance();
+        if(loader.isInited()) return;
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
+        loader.init(config);
+    }
+
+    private void initActionBar() {
 
         ActionBar bar = getSupportActionBar();
         bar.setDisplayHomeAsUpEnabled(false);

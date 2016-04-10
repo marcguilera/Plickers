@@ -3,11 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context="com.plickers.android.activities.PollListActivity">
 
-    <com.plickers.android.ui.views.PollSearchListView
+
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lvSearch"
-    />
+        android:id="@+id/pbBody">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pbLoadingPolls"
+            android:indeterminate="true" />
+
+        <com.plickers.android.ui.views.SearchListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/lvSearch"
+            custom:noResultsText="No polls found. You might want to ease your filters. "
+            />
+
+    </LinearLayout>
+
 </LinearLayout>

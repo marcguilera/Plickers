@@ -1,8 +1,8 @@
 package com.plickers.android.ui.views;
 
 import android.content.Context;
-import android.support.v7.widget.ActionBarOverlayLayout;
-import android.support.v7.widget.SearchView;
+
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -11,9 +11,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
+import com.plickers.android.R;
 import com.plickers.android.ui.adapters.FiltrableAdapter;
 
 import java.util.ArrayList;
@@ -22,11 +26,10 @@ import java.util.List;
 /**
  * A general listview with a search bar on top.
  */
-public class SearchListView extends LinearLayout{
+public class SearchListView extends LinearLayout {
 
     private SearchView searchView;
     private ListView listView;
-    private TextView noResults;
     private String noResultsText = "";
 
 
@@ -44,50 +47,38 @@ public class SearchListView extends LinearLayout{
 
     public SearchListView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+
+        TypedArray a = getContext().getTheme().obtainStyledAttributes(
+                attrs,
+                R.styleable.SearchListView,
+                0, 0);
+
+        noResultsText = a.getString(R.styleable.SearchListView_noResultsText);
+
         init();
     }
 
     private void init() {
-        setOrientation(LinearLayout.VERTICAL);
-        addSearchView();
-        addListView();
-    }
+        inflate(getContext(), getLayout() , this);
+        searchView = (SearchView) findViewById(R.id.slvSearchBar);
+        listView = (ListView) findViewById(R.id.slvList);
 
-    private void addSearchView() {
-        searchView = newSearchView();
 
-        //Add listener, it can be overriden by the user
-        setSearchListViewListener(new SearchListViewListener() {
+        setSearchListViewListener(new SearchListViewListener(){
             @Override
-            public void onQueryTextChange(String query) {
-                //Text has been submitted, let's search
-                performFilter(query);
+            public void onQueryTextChange(String newText) {
+                performFilter(newText);
             }
         });
-
-        addView(searchView);
     }
 
-    private void addListView() {
-        listView = newListView();
-        addView(listView);
-    }
+    /**
+     * Can be overridden by the children to use another view
+     * The view must have a slvSearchBar and a slvList
+     */
 
-    //Can be overriden if needed by the child
-    protected SearchView newSearchView(){
-        SearchView sv = new SearchView(getContext());
-        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
-        sv.setLayoutParams(params);
-
-        return sv;
-    }
-
-    //Can be overridden if needed by the child
-    protected ListView newListView(){
-        ListView lv = new ListView(getContext());
-        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
-        lv.setLayoutParams(params);
-        return lv;
+    protected int getLayout(){
+        return R.layout.search_list_view;
     }
 
     /**
@@ -99,28 +90,7 @@ public class SearchListView extends LinearLayout{
         adapter.getFilter().filter(query);
 
         if(adapter.isEmpty()){
-            addNoResultsText();
-        }else{
-            removeNoResultsText();
-        }
-    }
-
-    private void removeNoResultsText() {
-        if(noResults!=null){
-            ((ViewGroup) noResults.getParent()).removeView(noResults);
-            noResults=null;
-        }
-    }
-
-    private void addNoResultsText() {
-        if(noResults==null){
-            noResults = new TextView(getContext());
-            LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
-            noResults.setGravity(Gravity.CENTER);
-            noResults.setTextSize(25);
-            noResults.setLayoutParams(params);
-            noResults.setText(noResultsText);
-            addView(noResults);
+            Toast.makeText(getContext(),noResultsText,Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -166,9 +136,5 @@ public class SearchListView extends LinearLayout{
 
     public interface SearchListViewItemClickListener{
         public void onItemClicked(Object item);
-    }
-
-    public void setNoResultsText(String noResultsText) {
-        this.noResultsText = noResultsText;
     }
 }

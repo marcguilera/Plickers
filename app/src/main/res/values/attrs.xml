@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SearchListView">
+        <attr name="noResultsText" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="TitleView">
+        <attr name="titleString" format="string" />
+        <attr name="titleColor" format="integer" />
+        <attr name="backgroundColor" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="SectionView">
+        <attr name="titleSectionString" format="string" />
+        <attr name="styleColor" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="ListSectionView">
+        <attr name="clickableItems" format="boolean"/>
+    </declare-styleable>
+
+</resources>

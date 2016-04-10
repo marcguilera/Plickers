@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.view.ViewManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -20,6 +22,7 @@ import com.plickers.android.data.Poll;
 import com.plickers.android.data.Question;
 import com.plickers.android.data.Response;
 import com.plickers.android.ui.adapters.ChoiceListingAdapter;
+import com.plickers.android.ui.adapters.FiltrableAdapter;
 import com.plickers.android.ui.adapters.ResponseListingAdapter;
 import com.plickers.android.ui.views.ListSectionView;
 import com.plickers.android.ui.views.TitleView;
@@ -47,6 +50,7 @@ public class QuestionActivity extends PlickersActivity {
         initResponses();
         initMoreInfo();
         initProTip();
+        initFilters();
     }
 
     private void initProTip() {
@@ -233,5 +237,50 @@ public class QuestionActivity extends PlickersActivity {
                 parent.removeView(iv);
             }
         });
+    }
+
+    private void initFilters() {
+        CheckBox A = (CheckBox) findViewById(R.id.qbCbA);
+        CheckBox B = (CheckBox) findViewById(R.id.qbCbB);
+        CheckBox C = (CheckBox) findViewById(R.id.qbCbC);
+        CheckBox D = (CheckBox) findViewById(R.id.qbCbD);
+
+        CheckBox.OnCheckedChangeListener listener = new CheckBox.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                filter();
+            }
+        };
+
+        A.setOnCheckedChangeListener(listener);
+        B.setOnCheckedChangeListener(listener);
+        C.setOnCheckedChangeListener(listener);
+        D.setOnCheckedChangeListener(listener);
+    }
+
+    private void filter(){
+        CheckBox A = (CheckBox) findViewById(R.id.qbCbA);
+        CheckBox B = (CheckBox) findViewById(R.id.qbCbB);
+        CheckBox C = (CheckBox) findViewById(R.id.qbCbC);
+        CheckBox D = (CheckBox) findViewById(R.id.qbCbD);
+
+        ListSectionView view = (ListSectionView) findViewById(R.id.qbResponses);
+
+        StringBuilder query = new StringBuilder();
+        if(A.isChecked()){
+            query.append("A");
+        }
+        if(B.isChecked()){
+            query.append("B");
+        }
+        if(C.isChecked()){
+            query.append("C");
+        }
+        if(D.isChecked()){
+            query.append("D");
+        }
+
+        FiltrableAdapter adapter = (FiltrableAdapter)view.getAdapter();
+        adapter.getFilter().filter(query.toString());
     }
 }

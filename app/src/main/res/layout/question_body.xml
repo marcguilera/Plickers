@@ -41,15 +41,55 @@
 
     </com.plickers.android.ui.views.ListSectionView>
 
-    <com.plickers.android.ui.views.ListSectionView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/qbResponses"
-        custom:styleColor="@color/colorPrimary"
-        custom:clickableItems="true"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
+        <com.plickers.android.ui.views.ListSectionView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/qbResponses"
+            custom:styleColor="@color/colorPrimary"
+            custom:clickableItems="true"
+            android:orientation="vertical">
 
-    </com.plickers.android.ui.views.ListSectionView>
+        </com.plickers.android.ui.views.ListSectionView>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right"
+            android:layout_margin="8dp">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A"
+                android:id="@+id/qbCbA"
+                android:checked="true" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B"
+                android:id="@+id/qbCbB"
+                android:checked="true" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C"
+                android:id="@+id/qbCbC"
+                android:checked="true" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="D"
+                android:id="@+id/qbCbD"
+                android:checked="true" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+
 
 
     <Button

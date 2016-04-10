@@ -16,7 +16,7 @@ import java.util.List;
 
 
 
-public class ResponseListingAdapter extends ArrayAdapter<Response> {
+public class ResponseListingAdapter extends FiltrableAdapter<Response> {
     public ResponseListingAdapter(Context context, List<Response> resource) {
         super(context, R.layout.response_listing_row, resource);
     }
@@ -52,5 +52,10 @@ public class ResponseListingAdapter extends ArrayAdapter<Response> {
         }
 
         return row;
+    }
+
+    @Override
+    public boolean performFilter(Response current, String query) {
+        return query.contains(current.getAnswer());
     }
 }

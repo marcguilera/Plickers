@@ -74,6 +74,10 @@ public class ListSectionView extends LinearLayout{
         listView.setAdapter(adapter);
     }
 
+    public ListAdapter getAdapter(){
+        return listView.getAdapter();
+    }
+
     public void setListSectionViewItemClickListener(final ListSectionViewItemClickListener listener){
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -16,7 +16,6 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.plickers.android.R;
 import com.plickers.android.ui.adapters.FiltrableAdapter;
 

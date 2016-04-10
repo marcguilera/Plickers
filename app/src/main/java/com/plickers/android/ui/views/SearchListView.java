@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A general listview with a search bar on top.
+ * A general {@link ListView} with a {@link SearchView} on top.
  */
 public class SearchListView extends LinearLayout {
 
@@ -72,7 +72,7 @@ public class SearchListView extends LinearLayout {
     }
 
     /**
-     * Can be overridden by the children to use another view
+     * Can be overridden by the children to use another {@link View}
      * The view must have a slvSearchBar and a slvList
      */
 
@@ -81,7 +81,7 @@ public class SearchListView extends LinearLayout {
     }
 
     /**
-     * Performs a filter in the list
+     * Performs a filter in the {@link ListView}
      * @param query
      */
     private void performFilter(String query){
@@ -94,7 +94,7 @@ public class SearchListView extends LinearLayout {
     }
 
     /**
-     * Sets the adapter for the list
+     * Sets the adapter for the {@link ListView}
      */
     public void setAdapter(FiltrableAdapter adapter){
         listView.setAdapter(adapter);

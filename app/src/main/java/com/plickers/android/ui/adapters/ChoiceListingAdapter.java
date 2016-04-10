@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.plickers.android.R;
@@ -16,7 +17,8 @@ import com.plickers.android.data.Choice;
 import java.util.List;
 
 /**
- * Created by marc on 10/04/16.
+ * Generates the {@link View} for a single row of choice. It has the
+ * correct indicator and the choice body.
  */
 public class ChoiceListingAdapter extends ArrayAdapter<Choice> {
     public ChoiceListingAdapter(Context context, List<Choice> resources) {

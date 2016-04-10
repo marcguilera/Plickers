@@ -1,6 +1,7 @@
 package com.plickers.android.activities;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,8 +25,11 @@ import com.plickers.android.network.ApiCallback;
 import com.plickers.android.ui.adapters.PollListingAdapter;
 import com.plickers.android.ui.views.SearchListView;
 
-import java.util.zip.Inflater;
 
+/**
+ * Initial {@link PlickersActivity} containing a filtrable list of {@link Poll}s fetched
+ * from the {@link Api}.
+ */
 public class PollListActivity extends PlickersActivity {
 
     @Override
@@ -37,7 +41,7 @@ public class PollListActivity extends PlickersActivity {
     }
 
     private void init() {
-        initMoreInfo();
+        initAbout();
         loadPolls();
 
         //Click listener on one of the polls
@@ -52,34 +56,55 @@ public class PollListActivity extends PlickersActivity {
         });
     }
 
-    private void initMoreInfo() {
+    /**
+     * Adds the more info button
+     */
+    private void initAbout() {
         Button about = (Button) findViewById(R.id.lvAbout);
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showMoreInfo();
+                showAboutDialog();
             }
         });
     }
 
-    private void showMoreInfo() {
-        AlertDialog dialog;
+    /**
+     * Shows a dialog with more info about the app.
+     */
+    private void showAboutDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = LayoutInflater.from(this);
         alertDialogBuilder.setView(inflater.inflate(R.layout.about_dialog, null));
-        dialog = alertDialogBuilder.create();
+        final AlertDialog dialog = alertDialogBuilder.create();
         dialog.show();
+
+        Button btn = (Button) dialog.findViewById(R.id.aboutOK);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 
+    /**
+     * Starts the {@link QuestionActivity} of the given {@link Poll} and
+     * transitions to it.
+     * @param poll
+     */
     private void goToQuestion(Poll poll){
         //Go to the item
         final SearchListView listView = (SearchListView) findViewById(R.id.lvSearch);
         Intent intent = new Intent(listView.getContext(), QuestionActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        intent.putExtra("poll",poll);
+        intent.putExtra("poll",poll); //Pass the poll to the activity
         startActivity(intent);
     }
 
+    /**
+     * Fetches {@link Polls} from the database and shows them in a {@link SearchListView}.
+     */
     private void loadPolls() {
         //Show loading dialog
         final ProgressDialog loading = ProgressDialog.show(this, getString(R.string.loading_polls_title), getString(R.string.loading_polls_body));
@@ -108,13 +133,18 @@ public class PollListActivity extends PlickersActivity {
             }
 
             private void done(){
-                loading.hide();
-                view.setVisibility(View.VISIBLE);
+                loading.hide(); //Hide the dialog
+                view.setVisibility(View.VISIBLE); //Make the contents visible
             }
         });
 
     }
 
+    /**
+     * Shows a connection error {@link AlertDialog} given the error code
+     * to show the user the {@link Polls} couldn't be fetched.
+     * @param code
+     */
     private void showErrorDialog(int code){
         AlertDialog dialog;
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);

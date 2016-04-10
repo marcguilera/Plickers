@@ -18,7 +18,7 @@ import com.plickers.android.R;
 import com.plickers.android.ui.adapters.FiltrableAdapter;
 
 /**
- * Created by marc on 10/04/16.
+ * A general reusable {@link ListView} with a Title ({@link SectionView}).
  */
 public class ListSectionView extends LinearLayout{
 

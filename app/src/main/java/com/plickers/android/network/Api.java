@@ -37,14 +37,31 @@ public class Api {
         get("/polls", null, callback);
     }
 
+    /**
+     * Performs a GET call to the given route.
+     * @param url
+     * @param params
+     * @param callback
+     */
     public static void get(String url, RequestParams params, final ApiCallback callback) {
         client.get(getAbsoluteUrl(url), params, getTextHttpResponseHandler(callback));
     }
 
+    /**
+     * Performs a POST call to the given route.
+     * @param url
+     * @param params
+     * @param callback
+     */
     public static void post(String url, RequestParams params, ApiCallback callback) {
         client.post(getAbsoluteUrl(url), params, getTextHttpResponseHandler(callback));
     }
 
+    /**
+     * Given a relative url returns the absolute url (+the base url)
+     * @param relativeUrl
+     * @return url
+     */
     private static String getAbsoluteUrl(String relativeUrl) {
         return BASE_URL + relativeUrl;
     }

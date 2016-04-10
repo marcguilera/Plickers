@@ -11,7 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by marc on 8/04/16.
+ * Root of the structure of date. It holds a {@link List} of polls.
+ * This structure resembles the architecture of the JSON.
  */
 public class Polls implements Serializable {
 

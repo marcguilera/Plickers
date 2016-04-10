@@ -1,24 +1,14 @@
 package com.plickers.android.data;
 
-import android.graphics.Bitmap;
-import android.view.View;
-
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.ImageSize;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
-import com.plickers.android.network.ImageLoaderCallback;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by marc on 8/04/16.
- */
+
 public class Question extends DBObject{
 
     private String body;

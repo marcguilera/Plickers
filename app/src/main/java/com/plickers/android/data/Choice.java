@@ -6,9 +6,6 @@ import com.eclipsesource.json.JsonValue;
 
 import java.util.ArrayList;
 
-/**
- * Created by marc on 8/04/16.
- */
 public class Choice extends DBObject{
     private String body;
     private boolean correct;

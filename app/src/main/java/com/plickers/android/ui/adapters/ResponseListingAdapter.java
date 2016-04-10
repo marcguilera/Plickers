@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.plickers.android.R;
@@ -14,8 +15,10 @@ import com.plickers.android.data.Response;
 
 import java.util.List;
 
-
-
+/**
+ * Generates the {@link View} of a single response containing the student and the
+ * option.
+ */
 public class ResponseListingAdapter extends FiltrableAdapter<Response> {
     public ResponseListingAdapter(Context context, List<Response> resource) {
         super(context, R.layout.response_listing_row, resource);

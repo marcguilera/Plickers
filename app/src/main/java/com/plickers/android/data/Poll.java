@@ -11,9 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by marc on 8/04/16.
- */
 public class Poll extends DBObject{
 
     private String id;

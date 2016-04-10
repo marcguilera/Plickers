@@ -41,4 +41,6 @@
     <string name="no_student">Empty student.</string>
     <string name="no_answer">Empty answer.</string>
     <string name="no_card">Empty card.</string>
+    <string name="app_by">App by: Marc Guilera</string>
+    <string name="about">About this app</string>
 </resources>

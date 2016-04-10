@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     tools:context="com.plickers.android.activities.PollListActivity">
 
 
@@ -13,7 +12,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/pbBody">
+        android:id="@+id/pbBody"
+        android:layout_marginBottom="25dp">
 
         <com.plickers.android.ui.views.TitleView
             android:layout_width="match_parent"
@@ -28,9 +28,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/lvSearch"
-            custom:noResultsText="No polls found. You might want to ease your filters. ">
+            custom:noResultsText="No polls found. You might want to ease your filters.
+            "
+            android:layout_marginBottom="20dp">
+
         </com.plickers.android.ui.views.SearchListView>
 
     </LinearLayout>
 
-</LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about"
+        android:id="@+id/lvAbout"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/abc_background_cache_hint_selector_material_light" />
+
+</FrameLayout>

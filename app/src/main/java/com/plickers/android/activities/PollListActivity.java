@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewManager;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.eclipsesource.json.JsonValue;
@@ -22,6 +24,8 @@ import com.plickers.android.network.ApiCallback;
 import com.plickers.android.ui.adapters.PollListingAdapter;
 import com.plickers.android.ui.views.SearchListView;
 
+import java.util.zip.Inflater;
+
 public class PollListActivity extends PlickersActivity {
 
     @Override
@@ -33,6 +37,7 @@ public class PollListActivity extends PlickersActivity {
     }
 
     private void init() {
+        initMoreInfo();
         loadPolls();
 
         //Click listener on one of the polls
@@ -45,6 +50,25 @@ public class PollListActivity extends PlickersActivity {
                 goToQuestion(poll);
             }
         });
+    }
+
+    private void initMoreInfo() {
+        Button about = (Button) findViewById(R.id.lvAbout);
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMoreInfo();
+            }
+        });
+    }
+
+    private void showMoreInfo() {
+        AlertDialog dialog;
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        alertDialogBuilder.setView(inflater.inflate(R.layout.about_dialog, null));
+        dialog = alertDialogBuilder.create();
+        dialog.show();
     }
 
     private void goToQuestion(Poll poll){

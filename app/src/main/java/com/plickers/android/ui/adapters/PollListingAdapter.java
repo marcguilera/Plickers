@@ -3,6 +3,7 @@ package com.plickers.android.ui.adapters;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -63,7 +64,8 @@ public class PollListingAdapter extends FiltrableAdapter<Poll> {
             }
             questionTV.setText(questionString);
         }else{
-            ((ViewManager)row).removeView(questionTV);
+            questionTV.setTextColor(Color.RED);
+            questionTV.setText(row.getResources().getString(R.string.no_question));
         }
 
 

@@ -6,8 +6,11 @@
     <string name="added_on">Added on</string>
     <string name="no_results">No results. Try removing your filter.</string>
     <string name="loading_image">Loading image...</string>
-    <string name="poll_choices_title">Choices</string>
     <string name="hint_responses">Pro tip: Tap on a student to view more details.</string>
+
+    <plurals name="poll_choices_title">
+        <item quantity="other">Choices (%d)</item>
+    </plurals>
 
     <plurals name="poll_responses_title">
         <item quantity="other">Responses (%d)</item>
@@ -31,4 +34,11 @@
     <string name="choices"># choices</string>
     <string name="responses"># responses</string>
     <string name="retry">Retry</string>
+    <string name="polls">Polls</string>
+
+    <string name="no_choice">Empty choice.</string>
+    <string name="no_question">Empty question.</string>
+    <string name="no_student">Empty student.</string>
+    <string name="no_answer">Empty answer.</string>
+    <string name="no_card">Empty card.</string>
 </resources>

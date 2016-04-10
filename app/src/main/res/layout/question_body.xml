@@ -36,7 +36,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/qbChoices"
         custom:styleColor="@color/colorPrimary"
-        custom:titleSectionString="@string/poll_choices_title"
         custom:clickableItems="false"
         android:orientation="vertical">
 

@@ -1,6 +1,7 @@
 package com.plickers.android.activities;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -56,6 +57,12 @@ public class PollListActivity extends PlickersActivity {
     }
 
     private void loadPolls() {
+        //Show loading dialog
+        final ProgressDialog loading = ProgressDialog.show(this, getString(R.string.loading_polls_title), getString(R.string.loading_polls_body));
+        final View view = findViewById(R.id.pbBody);
+        view.setVisibility(View.INVISIBLE);
+
+
         Api.getPolls(new ApiCallback(){
             public void onSuccess(JsonValue response){
                 //Read the response into the stucture of polls
@@ -66,17 +73,22 @@ public class PollListActivity extends PlickersActivity {
                 SearchListView listView = (SearchListView) findViewById(R.id.lvSearch);
                 PollListingAdapter adapter = new PollListingAdapter(listView.getContext(),polls.getPolls());
                 listView.setAdapter(adapter);
-
-                //Remove the progress bar from the view
-                ProgressBar bar = (ProgressBar) findViewById(R.id.pbLoadingPolls);
-                ((ViewManager)bar.getParent()).removeView(bar);
+                done();
             }
 
             public void onError(int errorCode){
                 super.onError(errorCode);
+                done();
+                //Remove the progress bar from the view
                 showErrorDialog(errorCode);
             }
+
+            private void done(){
+                loading.hide();
+                view.setVisibility(View.VISIBLE);
+            }
         });
+
     }
 
     private void showErrorDialog(int code){
@@ -91,6 +103,7 @@ public class PollListActivity extends PlickersActivity {
 
 
         alertDialogBuilder.setTitle(title);
+        alertDialogBuilder.setCancelable(false);
         alertDialogBuilder.setMessage(getString(R.string.err_dialog_message));
         alertDialogBuilder.setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener(){
 

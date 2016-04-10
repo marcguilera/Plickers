@@ -1,6 +1,7 @@
 package com.plickers.android.ui.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,14 +30,26 @@ public class ResponseListingAdapter extends ArrayAdapter<Response> {
         TextView studentTF = (TextView) row.findViewById(R.id.response_student);
 
         String studentString = response.getStudent();
-        if(studentString.length()>28){
-            studentString = studentString.substring(0,26)+"...";
+
+        if(studentString!=null&&!studentString.isEmpty()){
+            if(studentString.length()>28){
+                studentString = studentString.substring(0,26)+"...";
+            }
+            studentTF.setText(studentString);
+        }else{
+            studentTF.setTextColor(Color.RED);
+            studentTF.setText(row.getResources().getString(R.string.no_student));
         }
 
-        studentTF.setText(studentString);
-
         TextView optionTF = (TextView) row.findViewById(R.id.response_choice);
-        optionTF.setText(response.getAnswer());
+        String answer = response.getAnswer();
+
+        if(answer!=null&&!studentString.isEmpty()){
+            optionTF.setText(answer);
+        }else{
+            optionTF.setTextColor(Color.RED);
+            optionTF.setText(row.getResources().getString(R.string.no_answer));
+        }
 
         return row;
     }

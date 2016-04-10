@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         custom:styleColor="@color/colorPrimary"
-        custom:titleSectionString="@string/poll_choices_title"
         android:id="@+id/lsvHead" >
     </com.plickers.android.ui.views.SectionView>
 

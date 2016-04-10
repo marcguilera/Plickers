@@ -1,6 +1,7 @@
 package com.plickers.android.ui.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,13 @@ public class ChoiceListingAdapter extends ArrayAdapter<Choice> {
 
         Choice choice = getItem(position);
         TextView bodyLV = (TextView) row.findViewById(R.id.choice_body);
-        bodyLV.setText(choice.getBody());
+
+        if(choice.getBody()!=null && !choice.getBody().isEmpty()){
+            bodyLV.setText(choice.getBody());
+        }else{
+            bodyLV.setText(row.getResources().getString(R.string.no_choice));
+            bodyLV.setTextColor(Color.RED);
+        }
 
         if(!choice.isCorrect()){
             ImageView indicator = (ImageView) row.findViewById(R.id.choice_correct_indicator);

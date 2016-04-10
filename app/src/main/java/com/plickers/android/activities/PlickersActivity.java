@@ -2,6 +2,8 @@ package com.plickers.android.activities;
 
 
 import android.content.Context;
+import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import android.support.v7.app.ActionBar;
@@ -42,15 +44,11 @@ public class PlickersActivity extends AppCompatActivity {
     private void initActionBar() {
 
         ActionBar bar = getSupportActionBar();
-        bar.setDisplayHomeAsUpEnabled(false);
-        bar.setDisplayShowTitleEnabled(false);
-        bar.setDefaultDisplayHomeAsUpEnabled(true);
-
 
         LayoutInflater inflater = LayoutInflater.from(this);
         View v = inflater.inflate(R.layout.top_bar,null);
-
         bar.setCustomView(v);
+        bar.setDisplayShowTitleEnabled(false);
         bar.setDisplayShowCustomEnabled(true);
     }
 }

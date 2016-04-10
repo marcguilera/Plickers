@@ -26,13 +26,18 @@ import com.plickers.android.ui.adapters.FiltrableAdapter;
 import com.plickers.android.ui.adapters.ResponseListingAdapter;
 import com.plickers.android.ui.views.ListSectionView;
 import com.plickers.android.ui.views.TitleView;
+import com.plickers.android.data.Choice;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+/**
+ * {@link PlickersActivity} showing a poll. It shows the picture, the question,
+ * a list of possible {@link Choice}s and {@link Response}s.
+ */
 public class QuestionActivity extends PlickersActivity {
 
-    Poll poll;
+    private Poll poll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,11 @@ public class QuestionActivity extends PlickersActivity {
         init();
     }
 
+    /**
+     * Initializes all the elements in the {@link View}.
+     */
     private void init(){
+        //Fetch the poll passed by the previous activity
         poll = (Poll) getIntent().getSerializableExtra("poll");
 
         initThumb();
@@ -53,13 +62,21 @@ public class QuestionActivity extends PlickersActivity {
         initFilters();
     }
 
+    /**
+     * Shows the toast saying it is possible to get more info
+     * by tapping on a student.
+     */
     private void initProTip() {
         Toast.makeText(this,getString(R.string.hint_responses), Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Sets the title to the body of the {@link Question}.
+     */
     private void initTitle() {
         Question question = poll.getQuestion();
         TitleView title = (TitleView) findViewById(R.id.qbTitle);
+
         if(question.getBody()!=null&&!question.getBody().isEmpty()){
             title.setTitle(question.getBody());
         }else{
@@ -69,6 +86,9 @@ public class QuestionActivity extends PlickersActivity {
 
     }
 
+    /**
+     * Fills the list of choices with the adapter.
+     */
     private void initChoices() {
         Question question = poll.getQuestion();
         ListSectionView view = (ListSectionView) findViewById(R.id.qbChoices);
@@ -80,6 +100,9 @@ public class QuestionActivity extends PlickersActivity {
         view.setTitle(choiceString);
     }
 
+    /**
+     * Fills the list of responses with the adapter.
+     */
     private void initResponses() {
         List<Response> responses = poll.getResponses();
         ListSectionView view = (ListSectionView) findViewById(R.id.qbResponses);
@@ -101,6 +124,10 @@ public class QuestionActivity extends PlickersActivity {
         });
     }
 
+    /**
+     * Shows a dialog with extra info about the given response.
+     * @param response
+     */
     private void showResponseDialog(Response response){
         AlertDialog dialog;
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -142,6 +169,9 @@ public class QuestionActivity extends PlickersActivity {
         dialog.show();
     }
 
+    /**
+     * Creates the listener for the More info button at the bottom
+     */
     private void initMoreInfo() {
         Button btn = (Button) findViewById(R.id.qbMoreInfo);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -152,6 +182,10 @@ public class QuestionActivity extends PlickersActivity {
         });
     }
 
+    /**
+     * Shows a dialog with more information about the question being
+     * shown like date added, number of responses, etc.
+     */
     private void showMoreInfoDialog() {
         Question q = poll.getQuestion();
         SimpleDateFormat dt = new SimpleDateFormat("MM-dd-yyyy");
@@ -202,6 +236,10 @@ public class QuestionActivity extends PlickersActivity {
         dialog.show();
     }
 
+    /**
+     * Downloads the thumbnail and if that works it adds it to the top
+     * of the {@link QuestionActivity}.
+     */
     private void initThumb() {
         final ImageView iv = (ImageView)findViewById(R.id.qbTumb);
         ImageLoader loader = ImageLoader.getInstance();
@@ -239,6 +277,10 @@ public class QuestionActivity extends PlickersActivity {
         });
     }
 
+    /**
+     * Adds the listener to the checkboxes that filter the {@link Response}s
+     * so we are noticed every time there is a change.
+     */
     private void initFilters() {
         CheckBox A = (CheckBox) findViewById(R.id.qbCbA);
         CheckBox B = (CheckBox) findViewById(R.id.qbCbB);
@@ -258,6 +300,10 @@ public class QuestionActivity extends PlickersActivity {
         D.setOnCheckedChangeListener(listener);
     }
 
+    /**
+     * Called when there is a change in the filter settings, it applies a filter
+     * to the list of {@link Response}.
+     */
     private void filter(){
         CheckBox A = (CheckBox) findViewById(R.id.qbCbA);
         CheckBox B = (CheckBox) findViewById(R.id.qbCbB);

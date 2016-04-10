@@ -3,9 +3,6 @@ package com.plickers.android.data;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
 
-/**
- * Created by marc on 8/04/16.
- */
 public class Response extends DBObject{
     private String student;
     private String answer;

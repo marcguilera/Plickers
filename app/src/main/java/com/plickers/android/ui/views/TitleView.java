@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.plickers.android.R;
 
 /**
- * Created by marc on 10/04/16.
+ * A title with background.
  */
 public class TitleView extends FrameLayout {
 

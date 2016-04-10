@@ -4,6 +4,7 @@ import android.os.Parcelable;
 
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
+import com.plickers.android.network.Api;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,7 +12,8 @@ import java.util.Date;
 
 
 /**
- * Created by marc on 8/04/16.
+ * Every object coming from the {@link Api} extends this object
+ * so that it contains a modified, created and id.
  */
 public abstract class DBObject implements Serializable{
     Date modified;

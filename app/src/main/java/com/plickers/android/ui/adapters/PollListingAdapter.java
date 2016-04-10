@@ -2,36 +2,28 @@ package com.plickers.android.ui.adapters;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
-import android.widget.ArrayAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.plickers.android.R;
 import com.plickers.android.data.Poll;
 import com.plickers.android.data.Question;
-import com.plickers.android.network.ImageLoaderCallback;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by marc on 9/04/16.
+ * Generates {@link View} for a single poll row. It contains the question,
+ * the number of responses and the date added.
  */
 public class PollListingAdapter extends FiltrableAdapter<Poll> {
 

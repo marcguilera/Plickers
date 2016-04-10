@@ -18,7 +18,8 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.plickers.android.R;
 
 /**
- * Base activity for all activities in plickers.
+ * Base activity for all activities in plickers. All activities
+ * should extend this class which contains common initializations.
  */
 public class PlickersActivity extends AppCompatActivity {
     @Override

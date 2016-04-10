@@ -6,7 +6,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 /**
- * Created by marc on 9/04/16.
+ * A {@link ListView} that is not allowed to scroll to be used within another
+ * scrollable {@link View}.
  */
 public class NonScrollableListView extends ListView {
 

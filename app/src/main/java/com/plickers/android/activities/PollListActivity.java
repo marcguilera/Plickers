@@ -22,6 +22,11 @@ import com.plickers.android.network.ApiCallback;
 import com.plickers.android.ui.adapters.PollListingAdapter;
 import com.plickers.android.ui.views.SearchListView;
 
+
+/**
+ * Initial {@link PlickersActivity} containing a filtrable list of {@link Poll}s fetched
+ * from the {@link Api}.
+ */
 public class PollListActivity extends PlickersActivity {
 
     @Override
@@ -47,15 +52,23 @@ public class PollListActivity extends PlickersActivity {
         });
     }
 
+    /**
+     * Starts the {@link QuestionActivity} of the given {@link Poll} and
+     * transitions to it.
+     * @param poll
+     */
     private void goToQuestion(Poll poll){
         //Go to the item
         final SearchListView listView = (SearchListView) findViewById(R.id.lvSearch);
         Intent intent = new Intent(listView.getContext(), QuestionActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        intent.putExtra("poll",poll);
+        intent.putExtra("poll",poll); //Pass the poll to the activity
         startActivity(intent);
     }
 
+    /**
+     * Fetches {@link Polls} from the database and shows them in a {@link SearchListView}.
+     */
     private void loadPolls() {
         //Show loading dialog
         final ProgressDialog loading = ProgressDialog.show(this, getString(R.string.loading_polls_title), getString(R.string.loading_polls_body));
@@ -84,13 +97,18 @@ public class PollListActivity extends PlickersActivity {
             }
 
             private void done(){
-                loading.hide();
-                view.setVisibility(View.VISIBLE);
+                loading.hide(); //Hide the dialog
+                view.setVisibility(View.VISIBLE); //Make the contents visible
             }
         });
 
     }
 
+    /**
+     * Shows a connection error {@link AlertDialog} given the error code
+     * to show the user the {@link Polls} couldn't be fetched.
+     * @param code
+     */
     private void showErrorDialog(int code){
         AlertDialog dialog;
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);

@@ -1,15 +1,17 @@
 package com.plickers.android.ui.adapters;
 
 import android.content.Context;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * General adapter with filterable capabilities for reusability.
- * The only thing that childs have to do is implement performFilter.
+ * General {@link Adapter} with filterable capabilities for reusability.
+ * The only thing that childs have to do is implement {@link #performFilter(Object, String)}.
  */
 public abstract class FiltrableAdapter<T> extends ArrayAdapter<T> {
     private List<T> originalData, filteredData;
@@ -45,7 +47,7 @@ public abstract class FiltrableAdapter<T> extends ArrayAdapter<T> {
     }
 
     /**
-     * Returns true if the item should pass the filter and false if not.
+     * Returns true if the item should pass the {@link Filter} and false if not.
      * @param current
      * @param query
      * @return
